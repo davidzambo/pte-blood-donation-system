@@ -1,0 +1,5 @@
+1	Kandisz Nóra	B+	kd@dm.com	2	2017.11.12.
+2	Remek Elek	B	red@ele.com	2	2015.02.18.
+3	Pop Simon	B+	ps@vi.com	1	2010.09.09.
+4	Patia Nóra	A+	patt@n.com	4	2017.11.10.
+5	Para Zita	AB+	para@zita.hu	3	2018.02.10.

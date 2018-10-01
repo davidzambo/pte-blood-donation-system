@@ -4,21 +4,30 @@
 
 bool initializer(int argc, char args[])
 {
+    char *FILENAME;
+    FILENAME = args;
+
     if (argc < 2)
     {
-        printf("Whoops!!! Missing donor list file name!\n");
+        printf("ERROR: Missing donor list file name!\n");
         return false;
     }
 
     if (argc > 2)
     {
-        printf("Whoops!!! Too many arguments!\n");
+        printf("WARNING: Too many arguments!\n");
+    }
+
+    if (access(FILENAME, F_OK))
+    {
+        printf("ERROR: Given file not found!\n");
         return false;
     }
 
-    if (access(args[0], F_OK) != -1)
+    if (access(FILENAME, W_OK))
     {
-
+        printf("ERROR: Given file is not writeable\n");
+        return false;
     }
 
     return true;

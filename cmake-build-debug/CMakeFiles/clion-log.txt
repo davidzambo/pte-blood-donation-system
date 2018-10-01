@@ -1,0 +1,4 @@
+/opt/clion-2018.2.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/usr/bin/make -DCMAKE_C_COMPILER=/usr/bin/gcc -G "CodeBlocks - Unix Makefiles" /home/zdavid/Code/pte/blood-donation-system
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/zdavid/Code/pte/blood-donation-system/cmake-build-debug

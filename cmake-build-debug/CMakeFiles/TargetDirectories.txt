@@ -1,2 +1,0 @@
-/home/zdavid/Code/pte/blood-donation-system/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/zdavid/Code/pte/blood-donation-system/cmake-build-debug/CMakeFiles/edit_cache.dir

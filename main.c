@@ -1,12 +1,11 @@
 #include<stdio.h>
 #include<stdbool.h>
 #include<string.h>
-#include "initializer.h"
-#include "datevalidator.h"
-#include "filereader.h"
-#include "donor.h"
-#include "newdonor.h"
-#include "menu.h"
+#include "src/initializer.h"
+#include "src/lib/datevalidator.h"
+#include "src/lib/filereader.h"
+#include "src/createdonor.h"
+#include "src/menu.h"
 
 void main(int argc, char *args[])
 {
@@ -50,7 +49,7 @@ void main(int argc, char *args[])
 			printf("show");
 			break;
 		case '2':
-			create_new_donor();
+			create_donor();
 			break;
 		case '3':
 			printf("search");

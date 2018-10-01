@@ -1,12 +1,13 @@
 #include <stdio.h>
-#include "donor.h"
+#include "structs/donor.h"
 
-int create_new_donor()
+int create_donor()
 {
     Donor donor;
+    printf("\e[1;1H\e[2J");
+    printf("========================== MENU ==========================\n");
 
-    printf("\nRegister a new donor: \n");
-    printf("====================\n");
+    printf("\n================= REGISTER A NEW DONOR =================\n");
     printf("Name: ");
     scanf("%s", &donor.name);
     printf("Blood group: ");

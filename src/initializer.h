@@ -1,6 +1,10 @@
-#ifndef INITIALIZER_H
-#define INITIALIZER_H
+//
+// Created by zdavid on 02/10/18.
+//
+
+#ifndef BLOOD_DONATION_SYSTEM_INITIALIZER_H
+#define BLOOD_DONATION_SYSTEM_INITIALIZER_H
 
 _Bool initializer(int argc, char args[]);
 
-#endif
+#endif //BLOOD_DONATION_SYSTEM_INITIALIZER_H

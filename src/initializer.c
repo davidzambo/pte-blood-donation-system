@@ -1,3 +1,8 @@
+//
+// Created by zdavid on 02/10/18.
+//
+
+#include "initializer.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <unistd.h>

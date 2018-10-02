@@ -7,62 +7,61 @@
 #include "src/createdonor.h"
 #include "src/menu.h"
 
-void main(int argc, char *args[])
+int main(int argc, char *args[])
 {
-	char menu_action;
-	char current_date[10];
-	bool isValidDate;
-	char *FILENAME;
-	char *menuitem;
-	FILENAME = *(args + 1);
+    char menu_action;
+    char current_date[10];
+    bool isValidDate;
+    char *FILENAME;
+    char *menuitem;
+    FILENAME = *(args + 1);
 
-	printf("\e[1;1H\e[2J");
+    // printf("\e[1;1H\e[2J");
 
-	if (initializer(argc, FILENAME) == false)
-	{
-		return;
-	}
+    if (initializer(argc, FILENAME) == false)
+    {
+        return 0;
+    }
 
-	printf("==== WELCOME TO OUR BLOOD DONATION SYSTEM ====\n\n");
+    printf("==== WELCOME TO OUR BLOOD DONATION SYSTEM ====\n\n");
 
-	// do 
-	// {
-	// 	printf("Please enter the current date (i.e. 2018.09.29.), then please press <ENTER>:  ");
-	// 	scanf("%s", &current_date);
+    // do
+    // {
+    // 	printf("Please enter the current date (i.e. 2018.09.29.), then please press <ENTER>:  ");
+    // 	scanf("%s", &current_date);
 
-	// 	isValidDate = is_valid_date(current_date);
+    // 	isValidDate = is_valid_date(current_date);
 
-	// 	if (isValidDate == false) 
-	// 	{
-	// 		printf("The given date is not in the proper format!\n\n");
-	// 	} 
-	// } while (isValidDate == false);
+    // 	if (isValidDate == false)
+    // 	{
+    // 		printf("The given date is not in the proper format!\n\n");
+    // 	}
+    // } while (isValidDate == false);
 
-	// file_reader(FILENAME);
-	
-	do
-	{
-		menu_action = render_menu();
-		switch (menu_action)
-		{
-		case '1':
-			printf("show");
-			break;
-		case '2':
-			create_donor();
-			break;
-		case '3':
-			printf("search");
-			break;
-		case 'q': // exit on "q"
-			return;
-		default:
-			printf("something fucked up");
-		}
-	} while (menu_action != (char) 'q');
+    // file_reader(FILENAME);
 
-	printf("Hooray! You're not an idiot!!!\n");
-	return;
+    do
+    {
+        menu_action = render_menu();
+        switch (menu_action)
+        {
+            case '1':
+                file_reader(FILENAME);
+                break;
+            case '2':
+                create_donor();
+                break;
+            case '3':
+                printf("search");
+                break;
+            case 'q': // exit on "q"
+                return 0;
+            default:
+                printf("something fucked up");
+        }
+    } while (menu_action != (char) 'q');
+
+    printf("Hooray! You're not an idiot!!!\n");
+    return 0;
 
 }
-

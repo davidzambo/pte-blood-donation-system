@@ -1,5 +1,9 @@
-#ifndef DONOR_H
-#define DONOR_H
+//
+// Created by zdavid on 02/10/18.
+//
+
+#ifndef BLOOD_DONATION_SYSTEM_DONOR_H
+#define BLOOD_DONATION_SYSTEM_DONOR_H
 
 typedef struct Donor
 {
@@ -11,4 +15,5 @@ typedef struct Donor
     char last_donate_at[11];
 } Donor;
 
-#endif
+
+#endif //BLOOD_DONATION_SYSTEM_DONOR_H

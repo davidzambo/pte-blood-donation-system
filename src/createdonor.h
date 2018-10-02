@@ -1,6 +1,10 @@
-#ifndef CREATEDONOR_H
-#define CREATEDONOR_H
+//
+// Created by zdavid on 02/10/18.
+//
+
+#ifndef BLOOD_DONATION_SYSTEM_CREATEDONOR_H
+#define BLOOD_DONATION_SYSTEM_CREATEDONOR_H
 
 int create_donor();
 
-#endif
+#endif //BLOOD_DONATION_SYSTEM_CREATEDONOR_H

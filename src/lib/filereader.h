@@ -1,6 +1,10 @@
-#ifndef FILEREADER_H
-#define FILEREADER_H
+//
+// Created by zdavid on 02/10/18.
+//
+
+#ifndef BLOOD_DONATION_SYSTEM_FILEREADER_H
+#define BLOOD_DONATION_SYSTEM_FILEREADER_H
 
 _Bool file_reader(char *FILENAME);
 
-#endif
+#endif //BLOOD_DONATION_SYSTEM_FILEREADER_H

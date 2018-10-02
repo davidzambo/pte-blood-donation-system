@@ -1,3 +1,8 @@
+//
+// Created by zdavid on 02/10/18.
+//
+
+#include "menu.h"
 #include <stdio.h>
 
 char render_menu()
@@ -14,7 +19,7 @@ char render_menu()
         printf("\n\n q: Exit the program");
         printf("\n\nYour choice: ");
         scanf("%c", &menuitem);
-        
+
         if (menuitem == 'q')
         {
             printf("\nExit.\n\n");

@@ -12,48 +12,41 @@ bool file_reader(char *FILENAME){
     int i;
     FILE *file;
     char buff[255];
-    int tmp;
     unsigned int length;
     Donor donors[20];
     char data[30];
     char *actual;
+    char action;
+    bool repeat = false;
 
     file = fopen(FILENAME, "r");
 
-    length = get_record_length(FILENAME);
+    length = get_record_length(file);
     Donor Donors[length];
-    printf("Memory have been allocated for %d record", length);
+    printf("Memory have been allocated for %d record\n", length);
     printf("length: %d\n", length);
     for (i = 0; i < length; i ++)
     {
-
+        fscanf(file, "%s", buff);
+//        Donors[i] = prepare_record(buff);
     }
-
-    // read from line from line
-    // pass it to an extractor
-    //
-//     read every line
-    while (tmp != EOF)
-    {
-        // read every char in line
-        do
-        {
-            // read every char until a TAB
-            i = 0;
-            do
-            {
-                tmp = fgetc(file);
-                data[i] = tmp;
-                i++;
-            } while (tmp == 9);
-            printf("%s", data);
-
-            // TODO: SOLVE WINDOW AND MAC NEW LINE
-        } while (!((tmp == 10) || (tmp == EOF)));
-        printf("\nTHAT WAS A LINE\n");
-        tmp = EOF;
-    }
-    printf("\nTHAT WAS ALL\n");
 
     fclose(file);
+
+    do
+    {
+        printf("\nBack to menu (N) or exit (Y)?\n");
+        scanf("%c", &action);
+
+        switch (action) {
+            case 'N':
+            case 'n':
+                return 1;
+            case 'Y':
+            case 'y':
+                return -1;
+            default:
+                repeat = true;
+        }
+    } while (repeat);
 }

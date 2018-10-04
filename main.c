@@ -5,6 +5,7 @@
 #include "src/lib/datevalidator.h"
 #include "src/lib/filereader.h"
 #include "src/createdonor.h"
+#include "src/showdonors.h"
 #include "src/menu.h"
 
 int main(int argc, char *args[])
@@ -14,6 +15,7 @@ int main(int argc, char *args[])
     bool isValidDate;
     char *FILENAME;
     char *menuitem;
+    int submenu;
     FILENAME = *(args + 1);
 
     // printf("\e[1;1H\e[2J");
@@ -46,10 +48,18 @@ int main(int argc, char *args[])
         switch (menu_action)
         {
             case '1':
-                file_reader(FILENAME);
+                submenu = show_donors(FILENAME);
+                printf("wol");
+                if (submenu == -1)
+                {
+                    menu_action = 'q';
+                }
                 break;
             case '2':
-                create_donor();
+                if (create_donor() == -1)
+                {
+                    menu_action = 'q';
+                };
                 break;
             case '3':
                 printf("search");

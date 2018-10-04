@@ -7,8 +7,8 @@
 
 #include "../structs/donor.h"
 
-int get_record_length(char *filename);
+int get_record_length(char *file);
 
-Donor prepare_record(char *line);
+void prepare_record(Donor *donor, char *line);
 
 #endif //BLOOD_DONATION_SYSTEM_FILEHELPER_H

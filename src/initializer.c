@@ -10,7 +10,10 @@
 bool initializer(int argc, char args[])
 {
     char *FILENAME;
+    char exit_or_continue = 'y';
     FILENAME = args;
+
+    printf("========== WELCOME TO OUR BLOOD DONATION SYSTEM ==========\n\n");
 
     if (argc < 2)
     {
@@ -35,5 +38,20 @@ bool initializer(int argc, char args[])
         return false;
     }
 
-    return true;
+
+    do
+    {
+        printf("\nContinue? (y/n) : ");
+        scanf("%1c", &exit_or_continue);
+
+        if (exit_or_continue == 'n') {
+            return false;
+        }
+
+        if (exit_or_continue == 'y') {
+            return true;
+        }
+        
+    } while (!(exit_or_continue == 'n' || exit_or_continue == 'y'));
+
 }

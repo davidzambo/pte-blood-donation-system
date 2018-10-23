@@ -10,6 +10,7 @@ char render_menu()
     char menuitem = 0;
     while ((menuitem < 49) || (menuitem > 51))
     {
+        // Clear screen
         printf("\e[1;1H\e[2J");
         printf("========================== MENU ==========================\n");
         printf("\nBy pressing the number of the selected menu item, you can\nchoose from the following actions:\n\n");

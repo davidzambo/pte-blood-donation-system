@@ -25,8 +25,6 @@ int main(int argc, char *args[])
         return 0;
     }
 
-    printf("==== WELCOME TO OUR BLOOD DONATION SYSTEM ====\n\n");
-
     // do
     // {
     // 	printf("Please enter the current date (i.e. 2018.09.29.), then please press <ENTER>:  ");

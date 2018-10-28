@@ -8,11 +8,11 @@
 typedef struct Donor
 {
     int id;
-    char name[64];
+    char name[33];
     char blood_type[4];
-    char email[32];
+    char email[64];
     int blood_donations;
-    char last_donate_at[11];
+    char last_donate_at[12];
 } Donor;
 
 

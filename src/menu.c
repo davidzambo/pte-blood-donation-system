@@ -19,7 +19,7 @@ char render_menu()
         printf("\n 3: Search for donors by blood type");
         printf("\n\n q: Exit the program");
         printf("\n\nYour choice: ");
-        scanf("%c", &menuitem);
+        scanf("%1s", &menuitem);
 
         if (menuitem == 'q')
         {

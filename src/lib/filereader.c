@@ -12,19 +12,22 @@ bool file_reader(char *FILENAME){
     int i;
     FILE *file;
     char buff[255];
-    unsigned int length;
-    Donor donors[20];
+    int length;
     char data[30];
     char *actual;
     char action;
     bool repeat = false;
+    char new[] = "../../db.txt";
+    file = fopen(new, "r");
 
-    file = fopen(FILENAME, "r");
-
-    length = get_record_length(file);
+    length = get_record_length(new);
     Donor Donors[length];
     printf("Memory have been allocated for %d record\n", length);
     printf("length: %d\n", length);
+
+    printf("\nfilename: %s", FILENAME);
+    return true;
+
     for (i = 0; i < length; i ++)
     {
         fscanf(file, "%s", buff);

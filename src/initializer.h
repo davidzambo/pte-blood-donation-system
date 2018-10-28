@@ -5,6 +5,6 @@
 #ifndef BLOOD_DONATION_SYSTEM_INITIALIZER_H
 #define BLOOD_DONATION_SYSTEM_INITIALIZER_H
 
-_Bool initializer(int argc, char args[]);
+int initializer(int argc, char args[]);
 
 #endif //BLOOD_DONATION_SYSTEM_INITIALIZER_H

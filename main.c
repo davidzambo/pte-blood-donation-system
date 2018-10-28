@@ -20,11 +20,6 @@ int main(int argc, char *args[])
 
     // printf("\e[1;1H\e[2J");
 
-    if (initializer(argc, FILENAME) == false)
-    {
-        return 0;
-    }
-
     // do
     // {
     // 	printf("Please enter the current date (i.e. 2018.09.29.), then please press <ENTER>:  ");
@@ -39,6 +34,10 @@ int main(int argc, char *args[])
     // } while (isValidDate == false);
 
     // file_reader(FILENAME);
+
+    //    initializer(argc, FILENAME);
+
+    create_donor();
 
     do
     {

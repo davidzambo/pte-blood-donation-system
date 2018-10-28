@@ -3,22 +3,25 @@
 //
 
 #include "initializer.h"
+#include "lib/filereader.h"
+#include "lib/filehelper.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <unistd.h>
 
-bool initializer(int argc, char args[])
+int initializer(int argc, char args[])
 {
     char *FILENAME;
-    char exit_or_continue = 'y';
+    char exit_or_continue;
     FILENAME = args;
 
-    printf("========== WELCOME TO OUR BLOOD DONATION SYSTEM ==========\n\n");
+    printf("========== WELCOME TO OUR BLOOD DONATION SYSTEM ==========\n");
 
     if (argc < 2)
     {
         printf("ERROR: Missing donor list file name!\n");
-        return false;
+        exit(1);
     }
 
     if (argc > 2)
@@ -29,29 +32,32 @@ bool initializer(int argc, char args[])
     if (access(FILENAME, F_OK))
     {
         printf("ERROR: Given file not found!\n");
-        return false;
+        exit(1);
     }
 
     if (access(FILENAME, W_OK))
     {
         printf("ERROR: Given file is not writeable\n");
-        return false;
+        exit(1);
     }
 
+    printf("\n- Database file (%s) opened!", FILENAME);
+    printf("\n- Number of recorded donors initialized: %d", get_record_length(FILENAME));
+    printf("\n- List of the donors is scanned into the memory!\n\n");
+    file_reader(FILENAME);
 
-    do
+    while (!(exit_or_continue == 'n' || exit_or_continue == 'y'))
     {
-        printf("\nContinue? (y/n) : ");
-        scanf("%1c", &exit_or_continue);
+        printf("Continue? (y/n): ");
+        scanf("%s[^\n]", &exit_or_continue);
 
         if (exit_or_continue == 'n') {
-            return false;
+            printf("\nExit...\n");
+            exit(0);
         }
 
         if (exit_or_continue == 'y') {
-            return true;
+            return 1;
         }
-        
-    } while (!(exit_or_continue == 'n' || exit_or_continue == 'y'));
-
+    }
 }

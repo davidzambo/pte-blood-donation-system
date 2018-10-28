@@ -20,6 +20,8 @@ int get_record_length(char *filename)
         length++;
     }
 
+    fclose(file);
+
     return length;
 }
 

@@ -5,6 +5,6 @@
 #ifndef BLOOD_DONATION_SYSTEM_CREATEDONOR_H
 #define BLOOD_DONATION_SYSTEM_CREATEDONOR_H
 
-int create_donor();
+int create_donor(char *FILENAME);
 
 #endif //BLOOD_DONATION_SYSTEM_CREATEDONOR_H

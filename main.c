@@ -37,7 +37,7 @@ int main(int argc, char *args[])
 
     //    initializer(argc, FILENAME);
 
-    create_donor();
+    show_donors(FILENAME);
 
     do
     {
@@ -53,7 +53,7 @@ int main(int argc, char *args[])
                 }
                 break;
             case '2':
-                if (create_donor() == -1)
+                if (create_donor(FILENAME) == -1)
                 {
                     menu_action = 'q';
                 };

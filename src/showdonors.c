@@ -8,21 +8,10 @@
 #include "lib/filehelper.h"
 #include <string.h>
 
-struct DONOR
-{
-    int id;
-    char name[64];
-    char blood_type[4];
-    char email[32];
-    int blood_donations;
-    char last_donate_at[11];
-};
-
 int show_donors(char *filename)
 {
     int length = 0;
     int i, c, items = 0;
-    Donor *donor = NULL;
     FILE *file;
     char line[255];
     char lineBuffer[100];
@@ -36,13 +25,11 @@ int show_donors(char *filename)
         printf("\nFILE OK!\n");
     }
 
-    printf("Sizeof donor: %d\n", sizeof(struct Donor));
-
-//    donor =  malloc(sizeof(Donor));
+    DONOR *donor = malloc((length + 1) * sizeof(DONOR));
 
     while (fgets(line, 255, file)) {
         printf("\nline: ");
-        *donor  =  malloc(10* sizeof( **(struct DONOR)));
+        donor  =  (DONOR *) realloc(donor, (length + 1 ) * sizeof(DONOR));
 
         c = 0;
         for (i = 0; (i < 255) && ( *(line + i) != '\n'); i++) {
@@ -55,40 +42,30 @@ int show_donors(char *filename)
 
                 switch (items) {
                     case 0:
-                        (*donor)[i].id = (int) *lineBuffer;
+                        donor->id = (int) *lineBuffer;
                         break;
                     case 1:
-                        strcpy((*donor)[i].name, lineBuffer);
+                        strcpy(donor->name, lineBuffer);
                         break;
                     case 2:
-                        strcpy((*donor)[i].blood_type, lineBuffer);
+                        strcpy(donor->blood_type, lineBuffer);
                         break;
                     case 3:
-                        strcpy((*donor)[i].email, lineBuffer);
+                        strcpy(donor->email, lineBuffer);
                         break;
                     case 4:
-                        (*donor)[i].blood_donations = (int) *lineBuffer;
+                        donor->blood_donations = (int) *lineBuffer;
                         break;
                     case 5:
-                        strcpy((*donor)[i].last_donate_at, lineBuffer);
+                        strcpy(donor->last_donate_at, lineBuffer);
                         break;
                 }
                 items++;
             }
             c++;
-
-
-//            printf("%c", (line + i));
-//            for (c = 0; *(line + c) != '\t'; c++) {
-//                printf("%c", *(line + c));
-//            }
-//            printf("\nname: ");
-//            for (;*(line + c) != '\t'; c++ ) {
-//                printf("%c", *(line + c));
-//            }
         }
 
-        printf("\nDETAILS:\n #%d | name: %s | blood type: %s | email: %s | donations: %d | last: %s", (*donor)[i].id, (*donor)[i].name, (*donor)[i].blood_type, (*donor)[i].email, (*donor)[i].blood_donations, (*donor)[i].last_donate_at);
+        printf("\nDETAILS:\n #%d | name: %s | blood type: %s | email: %s | donations: %d | last: %s", donor->id, donor->name, donor->blood_type, donor->email, donor->blood_donations, donor->last_donate_at);
 
         length++;
     }
@@ -96,5 +73,5 @@ int show_donors(char *filename)
     printf("length = %d\n", length);
     fclose(file);
 
-    exit(0);
+    return 0;
 }

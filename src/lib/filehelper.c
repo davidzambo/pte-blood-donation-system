@@ -6,6 +6,7 @@
 #include "../structs/donor.h"
 #include <stdio.h>
 #include <string.h>
+#define  MAX_LINE_LENGTH 255
 
 int get_record_length(char *filename)
 {
@@ -25,40 +26,54 @@ int get_record_length(char *filename)
     return length;
 }
 
-void prepare_record(Donor *donor, char *line)
+/**
+ * Prepare data and create Donor from line
+ *
+ * @param line
+ *
+ */
+DONOR *prepare_record(char *line, DONOR *donor)
 {
-    char tmp[64];
-    int i = 0;
-    int key = 0;
-    int key_char = 0;
-    char data[5][64];
+    char lineBuffer[100];
+    int i, c = 0, items = 0;
 
-    printf("run\n");
-    printf("line %s\n", line);
+    /*
+     * Starts to read from the beginning of the line until '\n'
+     */
+    for (i = 0; (i < MAX_LINE_LENGTH) && ( *(line + i) != '\n'); i++) {
 
-    for (i = 0; i < 255; i++)
-    {
-//        printf("%d : %c\n", i, line[i]);
-//        printf("%d \n", line[i]);
-//        printf("key: %d; key_char: %d\n", key, key_char);
-        data[key][key_char] = line[i];
+//        printf("%c", *(line + i));
+        lineBuffer[c] = *(line + i);
 
-        if ((int) line[i] == 9) {
-            printf("data[%d][%d]: %s \n", key, key_char, data[key] );
-            key++;
-            key_char = 0;
+        if (*(line + i) == '\t' || *(line + i) == '\n') {
+            lineBuffer[c] = '\0';
+//                printf("\nlineBuffer : %s\n", lineBuffer);
+            c = -1;
+            switch (items) {
+                case 0:
+                    donor->id = (int) *lineBuffer;
+                    break;
+                case 1:
+                    strcpy(donor->name, lineBuffer);
+                    break;
+                case 2:
+                    strcpy(donor->blood_type, lineBuffer);
+                    break;
+                case 3:
+                    strcpy(donor->email, lineBuffer);
+                    break;
+                case 4:
+                    donor->blood_donations = (int) *lineBuffer;
+                    break;
+                case 5:
+                    strcpy(donor->last_donate_at, lineBuffer);
+                    break;
+            }
+            items++;
         }
-        key_char ++;
-        if ((int) line[i] == "\n") {
-            break;
-        }
+        c++;
     }
 
-    strcpy(donor->name, data[0]);
-    strcpy(donor->blood_type, data[1]);
-    strcpy(donor->email, data[2]);
-    strcpy(donor->blood_donations, data[3]);
-    strcpy(donor->last_donate_at, data[4]);
-
-    printf("name: %s \n", donor->name);
+    printf("\nDETAILS: #%d | name: %s | blood type: %s | email: %s | donations: %d", donor->id, donor->name, donor->blood_type, donor->email, donor->blood_donations, donor->last_donate_at);
+    return donor;
 }

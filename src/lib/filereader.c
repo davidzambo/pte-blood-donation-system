@@ -21,7 +21,7 @@ bool file_reader(char *FILENAME){
     file = fopen(new, "r");
 
     length = get_record_length(new);
-    Donor Donors[length];
+    DONOR Donors[length];
     printf("Memory have been allocated for %d record\n", length);
     printf("length: %d\n", length);
 

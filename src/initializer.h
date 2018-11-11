@@ -5,6 +5,8 @@
 #ifndef BLOOD_DONATION_SYSTEM_INITIALIZER_H
 #define BLOOD_DONATION_SYSTEM_INITIALIZER_H
 
-int initializer(int argc, char args[]);
+#include "structs/donor.h"
+
+DONOR *initializer(int argc, char args[]);
 
 #endif //BLOOD_DONATION_SYSTEM_INITIALIZER_H

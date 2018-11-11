@@ -9,7 +9,7 @@
 #include "lib/filehelper.h"
 
 int create_donor(char *FILENAME) {
-    Donor donor;
+    DONOR donor;
 
     char save_or_cancel;
     printf("\e[1;1H\e[2J");

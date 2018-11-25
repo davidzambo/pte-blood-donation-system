@@ -12,6 +12,7 @@
 #include <string.h>
 #include <malloc.h>
 #include "structs/donor.h"
+#include "lib/strhelper.h"
 
 DONOR *initializer(int argc, char args[]) {
     char *FILENAME;
@@ -20,7 +21,7 @@ DONOR *initializer(int argc, char args[]) {
     FILE *file;
     FILENAME = args;
 
-    printf("========== WELCOME TO OUR BLOOD DONATION SYSTEM ==========\n");
+    printf("=========== WELCOME TO OUR BLOOD DONATION SYSTEM ===========\n");
 
     if (argc < 2) {
         printf("ERROR: Missing donor list file name!\n");
@@ -50,18 +51,26 @@ DONOR *initializer(int argc, char args[]) {
     }
 
     DONOR *donors = malloc(sizeof(DONOR));
+    DONOR *actual_donor = donors;
 
     while (fgets(line, 255, file)) {
         donors = realloc(donors, (length + 1) * sizeof(DONOR));
-        printf("\nlength %d | donors size: %d | DONOR size: %d", length, malloc_usable_size(donors), sizeof(DONOR));
+//        printf("\nlength %d | donors size: %d | DONOR size: %d", length, malloc_usable_size(donors), sizeof(DONOR));
 
-        donors = prepare_record(line, &donors[length]);
-        printf("\nDETAILS:\n #%d | name: %s | blood type: %s | email: %s | donations: %d | last: %s", donors->id, donors->name, donors->blood_type, donors->email, donors->blood_donations, donors->last_donate_at);
+        actual_donor = donors + length;
+        prepare_record(line, (actual_donor));
+//        printf("\nDETAILS: #%d | name: %s | blood type: %s | email: %s | donations: %d | last: %s",
+//               actual_donor->id,
+//               actual_donor->name,
+//               actual_donor->blood_type,
+//               actual_donor->email,
+//               actual_donor->blood_donations,
+//               actual_donor->last_donate_at);
+
 //        printf("actual: %s", donors[length]->name);
-        printf("content: %s", &donors->name);
+//        printf("content: %s", &donors->name);
         length++;
     }
-    printf("\n\n\nactual: %s", donors[0].name);
 
     fclose(file);
 

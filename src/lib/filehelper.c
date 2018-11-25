@@ -4,6 +4,7 @@
 
 #include "filehelper.h"
 #include "../structs/donor.h"
+#include "strhelper.h"
 #include <stdio.h>
 #include <string.h>
 #define  MAX_LINE_LENGTH 255
@@ -42,16 +43,15 @@ DONOR *prepare_record(char *line, DONOR *donor)
      */
     for (i = 0; (i < MAX_LINE_LENGTH) && ( *(line + i) != '\n'); i++) {
 
-//        printf("%c", *(line + i));
         lineBuffer[c] = *(line + i);
 
         if (*(line + i) == '\t' || *(line + i) == '\n') {
             lineBuffer[c] = '\0';
-//                printf("\nlineBuffer : %s\n", lineBuffer);
+
             c = -1;
             switch (items) {
                 case 0:
-                    donor->id = (int) *lineBuffer;
+                    donor->id = strtoint(lineBuffer);
                     break;
                 case 1:
                     strcpy(donor->name, lineBuffer);
@@ -63,7 +63,7 @@ DONOR *prepare_record(char *line, DONOR *donor)
                     strcpy(donor->email, lineBuffer);
                     break;
                 case 4:
-                    donor->blood_donations = (int) *lineBuffer;
+                    donor->blood_donations = strtoint(lineBuffer);
                     break;
                 case 5:
                     strcpy(donor->last_donate_at, lineBuffer);
@@ -74,6 +74,6 @@ DONOR *prepare_record(char *line, DONOR *donor)
         c++;
     }
 
-    printf("\nDETAILS: #%d | name: %s | blood type: %s | email: %s | donations: %d", donor->id, donor->name, donor->blood_type, donor->email, donor->blood_donations, donor->last_donate_at);
+//    printf("\nDETAILS: #%d | name: %s | blood type: %s | email: %s | donations: %d", donor->id, donor->name, donor->blood_type, donor->email, donor->blood_donations, donor->last_donate_at);
     return donor;
 }

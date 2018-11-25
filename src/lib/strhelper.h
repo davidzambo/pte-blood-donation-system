@@ -8,4 +8,7 @@
 int strlength(char *str);
 
 int strcopy(char *to, char *from);
+
+int strtoint(char *str);
+
 #endif //BLOOD_DONATION_SYSTEM_STRHELPER_H

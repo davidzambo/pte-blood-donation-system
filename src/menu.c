@@ -12,7 +12,7 @@ char render_menu()
     {
         // Clear screen
         printf("\e[1;1H\e[2J");
-        printf("========================== MENU ==========================\n");
+        printf("=========================== MENU ===========================\n");
         printf("\nBy pressing the number of the selected menu item, you can\nchoose from the following actions:\n\n");
         printf("\n 1: View the list of the donors");
         printf("\n 2: Register a new donor");

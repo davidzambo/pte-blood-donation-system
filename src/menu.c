@@ -4,14 +4,14 @@
 
 #include "menu.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 char render_menu()
 {
-    char menuitem = 0;
-    while ((menuitem < 49) || (menuitem > 51))
+    char menuitem = '0';
+    while (((int) menuitem < 49) || ( (int) menuitem > 51))
     {
-        // Clear screen
-        printf("\e[1;1H\e[2J");
+//        system("/usr/bin/clear");
         printf("=========================== MENU ===========================\n");
         printf("\nBy pressing the number of the selected menu item, you can\nchoose from the following actions:\n\n");
         printf("\n 1: View the list of the donors");
@@ -19,7 +19,9 @@ char render_menu()
         printf("\n 3: Search for donors by blood type");
         printf("\n\n q: Exit the program");
         printf("\n\nYour choice: ");
-        scanf("%1s", &menuitem);
+        scanf(" %c", &menuitem);
+
+//        printf("\nCHOSEN decimal: %d char: %c", menuitem, menuitem);
 
         if (menuitem == 'q')
         {

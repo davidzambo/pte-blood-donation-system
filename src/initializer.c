@@ -51,26 +51,14 @@ DONOR *initializer(int argc, char args[]) {
     }
 
     DONOR *donors = malloc(sizeof(DONOR));
-    DONOR *actual_donor = donors;
 
     while (fgets(line, 255, file)) {
         donors = realloc(donors, (length + 1) * sizeof(DONOR));
-//        printf("\nlength %d | donors size: %d | DONOR size: %d", length, malloc_usable_size(donors), sizeof(DONOR));
-
-        actual_donor = donors + length;
-        prepare_record(line, (actual_donor));
-//        printf("\nDETAILS: #%d | name: %s | blood type: %s | email: %s | donations: %d | last: %s",
-//               actual_donor->id,
-//               actual_donor->name,
-//               actual_donor->blood_type,
-//               actual_donor->email,
-//               actual_donor->blood_donations,
-//               actual_donor->last_donate_at);
-
-//        printf("actual: %s", donors[length]->name);
-//        printf("content: %s", &donors->name);
+        prepare_record(line, (donors + length));
         length++;
     }
+
+    donors = realloc(donors, (length + 1) * sizeof(DONOR));
 
     fclose(file);
 

@@ -39,15 +39,15 @@ int main(int argc, char *args[])
 
     donor_list = initializer(argc, FILENAME);
 
-    printf("donor: %s", donor_list[1].name);
+//    printf("\nMAIN ADDRESS: %p | 2nd donor: %s\n", donor_list, donor_list[1].name);
     do
     {
-        printf("donor: %s", donor_list[1].name);
+//        printf("\nIN DO ADDRESS: %p | 2nd donor: %s\n", donor_list, donor_list[1].name);
         menu_action = render_menu();
         switch (menu_action)
         {
             case '1':
-                printf("donor: %s", donor_list[1].name);
+//                printf("\nIN 1: ADDRESS: %p | 2nd donor: %s\n", donor_list, donor_list[1].name);
                 list_donors(donor_list);
 
 //                submenu = show_donors(FILENAME);

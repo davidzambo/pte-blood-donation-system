@@ -2,7 +2,7 @@
 #include<stdbool.h>
 
 #include "src/initializer.h"
-#include "src/lib/datevalidator.h"
+#include "src/lib/validator.h"
 #include "src/listdonors.h"
 #include "src/lib/strhelper.h"
 #include "src/createdonor.h"
@@ -28,11 +28,11 @@ int main(int argc, char *args[])
 
     // 	isValidDate = is_valid_date(current_date);
 
-    // 	if (isValidDate == false)
+    // 	if (is_valid_date == false)
     // 	{
     // 		printf("The given date is not in the proper format!\n\n");
     // 	}
-    // } while (isValidDate == false);
+    // } while (is_valid_date == false);
 
     // file_reader(FILENAME);
 

@@ -9,12 +9,16 @@
 #include "structs/donor.h"
 #include "lib/filehelper.h"
 #include "lib/strhelper.h"
+#include "lib/validator.h"
 
 
 int create_donor(char *FILENAME, DONOR *donor_list) {
 
     char save_or_cancel;
+    char str_buffer[33];
+    int num_buffer;
     char length = 0;
+    int isValid = 0;
 
     while ((donor_list + length)->id != 0) {
         length++;
@@ -22,21 +26,34 @@ int create_donor(char *FILENAME, DONOR *donor_list) {
 
     DONOR new_donor;
 
-    printf("LENGTH: %d", length);
-
     printf("\n================= REGISTER A NEW DONOR =================\n");
 
-    printf("Name: ");
-    scanf(" %[^\n]s", new_donor.name);
-    getchar();
 
-    printf("Blood group: ");
-    scanf("%[^\n]s", new_donor.blood_type);
-    getchar();
+    while (isValid == 0)
+    {
+        printf("Name: ");
+        scanf(" %[^\n]s", new_donor.name);
+        getchar();
+        isValid = is_valid_name(new_donor.name);
+    }
+    isValid = 0;
 
-    printf("Email: ");
-    scanf("%[^\n]s", new_donor.email);
-    getchar();
+    while (isValid == 0)
+    {
+        printf("Blood group: ");
+        scanf("%[^\n]s", new_donor.blood_type);
+        getchar();
+        isValid = is_valid_blood_type(new_donor.blood_type);
+    }
+    isValid = 0;
+
+    while (isValid == 0)
+    {
+        printf("Email: ");
+        scanf("%[^\n]s", new_donor.email);
+        getchar();
+        isValid = is_valid_email(new_donor.email);
+    }
 
     printf("Number of blood donations before: ");
     scanf("%d", &new_donor.blood_donations);
@@ -79,10 +96,6 @@ int create_donor(char *FILENAME, DONOR *donor_list) {
             printf("\nemail %s %s", (donor_list + length + 1)->email, new_donor.email);
             printf("\nblood_donations %d %d", (donor_list + length + 1)->blood_donations, new_donor.blood_donations);
             printf("\nlast_donate_at %s %s", (donor_list + length + 1)->last_donate_at, new_donor.last_donate_at);
-
-
-
-
 
             donor_list = realloc(donor_list, (length + 1) * sizeof(DONOR));
 

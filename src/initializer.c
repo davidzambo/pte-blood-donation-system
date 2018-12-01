@@ -3,13 +3,11 @@
 //
 
 #include "initializer.h"
-#include "lib/filereader.h"
 #include "lib/filehelper.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <unistd.h>
-#include <string.h>
 #include <malloc.h>
 #include "structs/donor.h"
 #include "lib/strhelper.h"
@@ -21,7 +19,7 @@ DONOR *initializer(int argc, char args[]) {
     FILE *file;
     FILENAME = args;
 
-    printf("=========== WELCOME TO OUR BLOOD DONATION SYSTEM ===========\n");
+    printf("================================ WELCOME TO OUR BLOOD DONATION SYSTEM ===============================\n");
 
     if (argc < 2) {
         printf("ERROR: Missing donor list file name!\n");
@@ -58,6 +56,10 @@ DONOR *initializer(int argc, char args[]) {
         length++;
     }
 
+    /*
+     * Add a new empty record to be able to detect
+     * the end of a while loop
+     */
     donors = realloc(donors, (length + 1) * sizeof(DONOR));
 
     fclose(file);

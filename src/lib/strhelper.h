@@ -11,4 +11,6 @@ int strcopy(char *to, char *from);
 
 int strtoint(char *str);
 
+int strconcat(char *to, char *str);
+
 #endif //BLOOD_DONATION_SYSTEM_STRHELPER_H

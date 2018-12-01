@@ -3,15 +3,16 @@
 //
 
 #include "structs/donor.h"
+#include "lib/strhelper.h"
 #include <stdio.h>
-#include <string.h>
 
 void list_donors(DONOR *donor_list) {
     int i = 0;
-
-    printf("=================== RECORDED BLOOD DONORS ==================\n");
-    printf("ID\tNAME\t\t\tBLOOD\tEMAIL\tDONATIONS\tLAST\n");
-    printf("\t\t\t\t\tTYPE\t\t\t\t\t\tDONATION\n\n");
+    int name_length = 0;
+    int email_length = 0;
+    printf("======================================= RECORDED BLOOD DONORS =======================================\n");
+    printf("ID\tNAME\t\t\t\t\t\t\tBLOOD\tEMAIL\t\t\t\t\t\t\tDONATIONS\tLAST DONATION\n");
+    printf("\t\t\t\t\t\t\t\t\tTYPE\n");
 
     while (1) {
         if (donor_list[i].id == 0) {
@@ -19,33 +20,20 @@ void list_donors(DONOR *donor_list) {
         }
 
         // FORMAT THE NAME VIEW
-        if (strlen(donor_list[i].name) < 12) {
-            strcat(donor_list[i].name, "\t");
-        }
-
-        if (strlen(donor_list[i].name) < 8) {
-            strcat(donor_list[i].name, "\t");
-        }
-
-        if (strlen(donor_list[i].name) <= 5) {
-            strcat(donor_list[i].name, "\t");
+        name_length = strlength(donor_list[i].name);
+        while (name_length < 28) {
+            strconcat(donor_list[i].name, "\t");
+            name_length += 4;
         }
 
         // FORMAT THE EMAIL VIEW
-        if (strlen(donor_list[i].email) < 12) {
-            strcat(donor_list[i].email, "\t");
+        email_length = strlength(donor_list[i].email);
+        while (email_length < 28) {
+            strconcat(donor_list[i].email, "\t");
+            email_length += 4;
         }
 
-        if (strlen(donor_list[i].email) < 8) {
-            strcat(donor_list[i].email, "\t");
-        }
-
-        if (strlen(donor_list[i].email) <= 4) {
-            strcat(donor_list[i].email, "\t");
-        }
-
-
-        printf("#%d\t%s\t%s\t\t%s\t%d\t%s\n",
+        printf("#%d\t%s\t%s\t\t%s\t%d\t\t\t%s\n",
                donor_list[i].id,
                donor_list[i].name,
                donor_list[i].blood_type,

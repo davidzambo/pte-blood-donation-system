@@ -8,8 +8,8 @@
 typedef struct
 {
     int id;
-    char name[64];
-    char blood_type[4];
+    char name[33];
+    char blood_type[5];
     char email[33];
     int blood_donations;
     char last_donate_at[12];

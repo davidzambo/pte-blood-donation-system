@@ -4,5 +4,3 @@
 4	Patia_Nora	A+	patt@n.com	4	2017.11.10.
 5	Para_Zita	AB+	para@zita.hu	3	2018.02.10.
 6	David Zambo	b3	ez@nem.az	4	2011.01.01.
-7	David	A0	m@e.hu	3	2011.01.01.
-8	Bon	e1	sand	4	2011.01.01.

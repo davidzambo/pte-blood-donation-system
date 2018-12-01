@@ -11,8 +11,7 @@ char render_menu()
     char menuitem = '0';
     while (((int) menuitem < 49) || ( (int) menuitem > 51))
     {
-//        system("/usr/bin/clear");
-        printf("=========================== MENU ===========================\n");
+        printf("================================================ MENU ===============================================\n");
         printf("\nBy pressing the number of the selected menu item, you can\nchoose from the following actions:\n\n");
         printf("\n 1: View the list of the donors");
         printf("\n 2: Register a new donor");

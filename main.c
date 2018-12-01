@@ -3,7 +3,6 @@
 
 #include "src/initializer.h"
 #include "src/lib/datevalidator.h"
-#include "src/lib/filereader.h"
 #include "src/listdonors.h"
 #include "src/lib/strhelper.h"
 #include "src/createdonor.h"
@@ -59,7 +58,7 @@ int main(int argc, char *args[])
 
                 break;
             case '2':
-                if (create_donor(FILENAME) == -1)
+                if (create_donor(FILENAME, donor_list) == -1)
                 {
                     menu_action = 'q';
                 };

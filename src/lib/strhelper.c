@@ -34,7 +34,7 @@ int strcopy(char *to, char *from) {
         i++;
     }
 
-    *(from + i -1) = '\0';
+    *(from + i) = '\0';
     return 0;
 }
 
@@ -53,4 +53,17 @@ int strtoint(char *str) {
     }
 
     return result;
+}
+
+int strconcat(char *to, char *str) {
+    int i = strlength(to), j = 0;
+
+    while (*(str + j) != '\0') {
+        *(to + i + j) = *(str + j);
+        j++;
+    }
+
+    *(to + i + j) = '\0';
+
+    return 0;
 }

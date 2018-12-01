@@ -5,6 +5,8 @@
 #ifndef BLOOD_DONATION_SYSTEM_CREATEDONOR_H
 #define BLOOD_DONATION_SYSTEM_CREATEDONOR_H
 
-int create_donor(char *FILENAME);
+#include "structs/donor.h"
+
+int create_donor(char *FILENAME, DONOR *donor);
 
 #endif //BLOOD_DONATION_SYSTEM_CREATEDONOR_H

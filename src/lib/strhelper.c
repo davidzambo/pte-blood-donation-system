@@ -83,3 +83,35 @@ int strconcat(char *to, char *str) {
 
     return 0;
 }
+
+/**
+ * Compare two strings
+ *
+ * @param what
+ * @param with
+ * @return
+ */
+int strcompare(char *what, char *with)
+{
+    int i = 0;
+
+    /*
+     * If the two string is not the same length
+     * it fails
+     */
+    if (strlength(what) != strlength(with)) {
+        return 0;
+    }
+
+    /*
+     * From char to char compare the whole string
+     */
+    for (i = 0; i < strlength(what); i++)
+    {
+        if (what[i] != with[i]) {
+            return 0;
+        }
+    }
+
+    return 1;
+}

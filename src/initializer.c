@@ -19,8 +19,6 @@ DONOR *initializer(int argc, char args[]) {
     FILE *file;
     FILENAME = args;
 
-    printf("================================ WELCOME TO OUR BLOOD DONATION SYSTEM ===============================\n");
-
     if (argc < 2) {
         printf("ERROR: Missing donor list file name!\n");
         exit(1);

@@ -6,27 +6,29 @@
 #include "src/listdonors.h"
 #include "src/lib/strhelper.h"
 #include "src/createdonor.h"
-#include "src/showdonors.h"
 #include "src/menu.h"
+#include "src/search.h"
 
 int main(int argc, char *args[])
 {
     char menu_action;
-    char current_date[10];
+    char currentDate[12] = "2018.12.03.";
     bool isValidDate;
     char *FILENAME = args[1];
     char *menuitem;
     int submenu;
     DONOR *donor_list;
 
+    printf("================================ WELCOME TO OUR BLOOD DONATION SYSTEM ===============================\n");
+
     // printf("\e[1;1H\e[2J");
 
     // do
     // {
     // 	printf("Enter the current date (i.e. 2018.09.29.), then please press <ENTER>:  ");
-    // 	scanf("%s", &current_date);
+    // 	scanf("%s", &currentDate);
 
-    // 	isValidDate = is_valid_date(current_date);
+    // 	isValidDate = is_valid_date(currentDate);
 
     // 	if (is_valid_date == false)
     // 	{
@@ -34,19 +36,14 @@ int main(int argc, char *args[])
     // 	}
     // } while (is_valid_date == false);
 
-    // file_reader(FILENAME);
-
     donor_list = initializer(argc, FILENAME);
 
-//    printf("\nMAIN ADDRESS: %p | 2nd donor: %s\n", donor_list, donor_list[1].name);
     do
     {
-//        printf("\nIN DO ADDRESS: %p | 2nd donor: %s\n", donor_list, donor_list[1].name);
         menu_action = render_menu();
         switch (menu_action)
         {
             case '1':
-//                printf("\nIN 1: ADDRESS: %p | 2nd donor: %s\n", donor_list, donor_list[1].name);
                 list_donors(donor_list);
 
 //                submenu = show_donors(FILENAME);
@@ -64,7 +61,7 @@ int main(int argc, char *args[])
                 };
                 break;
             case '3':
-                printf("search");
+                search(donor_list, currentDate);
                 break;
             case 'q': // exit on "q"
                 return 0;
@@ -73,7 +70,7 @@ int main(int argc, char *args[])
         }
     } while (menu_action != (char) 'q');
 
-    printf("Hooray! You're not an idiot!!!\n");
+    printf("\nExit...\n\n");
     return 0;
 
 }

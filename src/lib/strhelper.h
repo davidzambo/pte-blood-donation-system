@@ -13,4 +13,6 @@ int strtoint(char *str);
 
 int strconcat(char *to, char *str);
 
+int strcompare(char *what, char *with);
+
 #endif //BLOOD_DONATION_SYSTEM_STRHELPER_H

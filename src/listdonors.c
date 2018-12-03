@@ -7,9 +7,7 @@
 #include <stdio.h>
 
 void list_donors(DONOR *donor_list) {
-    int i = 0;
-    int name_length = 0;
-    int email_length = 0;
+    int i = 0, name_length = 0, email_length = 0;
     printf("======================================= RECORDED BLOOD DONORS =======================================\n");
     printf("ID\tNAME\t\t\t\t\t\t\tBLOOD\tEMAIL\t\t\t\t\t\t\tDONATIONS\tLAST DONATION\n");
     printf("\t\t\t\t\t\t\t\t\tTYPE\n");

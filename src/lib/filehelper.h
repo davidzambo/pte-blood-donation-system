@@ -9,6 +9,6 @@
 
 int get_record_length(char *file);
 
-DONOR *prepare_record(char *line, DONOR *donor);
+int prepare_record(char *line, DONOR *donor);
 
 #endif //BLOOD_DONATION_SYSTEM_FILEHELPER_H

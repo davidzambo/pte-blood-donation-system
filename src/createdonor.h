@@ -7,6 +7,6 @@
 
 #include "structs/donor.h"
 
-int create_donor(char *FILENAME, DONOR *donor);
+int create_donor(char *FILENAME, DONOR *donor_list);
 
 #endif //BLOOD_DONATION_SYSTEM_CREATEDONOR_H

@@ -30,22 +30,33 @@ int get_record_length(char *filename)
  * Prepare data and create Donor from line
  *
  * @param line
- *
+ * @param donor
+ * @returns int
  */
-DONOR *prepare_record(char *line, DONOR *donor)
+int prepare_record(char *line, DONOR *donor)
 {
     char lineBuffer[100];
     int i, c = 0, items = 0;
 
-    /*
-     * Starts to read from the beginning of the line until '\n'
-     */
+
     for (i = 0; i < MAX_LINE_LENGTH; i++) {
 
         lineBuffer[c] = *(line + i);
 
 //        printf("\nLINE: char: %c, int: %d", *(line + i), *(line + i));
-
+        /*
+         * Starts to read from the beginning of the line until '\n'
+         * If it founds a '\t', it means, that it is a new property of the donor
+         * so we should increase the 'item' number
+         *
+         * items:
+         * 0: id
+         * 1: name
+         * 2: blood_type
+         * 3: email
+         * 4. sum donations before
+         * 5. last donated at
+         */
         if (*(line + i) == '\t' || *(line + i) == '\n') {
             lineBuffer[c] = '\0';
 
@@ -80,5 +91,5 @@ DONOR *prepare_record(char *line, DONOR *donor)
     }
 
 //    printf("\nDETAILS: #%d | name: %s | blood type: %s | email: %s | donations: %d | last: %s", donor->id, donor->name, donor->blood_type, donor->email, donor->blood_donations, donor->last_donate_at);
-    return donor;
+    return 0;
 }

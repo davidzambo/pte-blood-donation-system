@@ -13,4 +13,8 @@ int is_valid_blood_type(char *bloodType);
 
 int is_valid_email(char *email);
 
+int is_valid_blood_donation(char *donations);
+
+int is_leap_year(int year);
+
 #endif //BLOOD_DONATION_SYSTEM_DATEVALIDATOR_H

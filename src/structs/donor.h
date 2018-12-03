@@ -5,7 +5,7 @@
 #ifndef BLOOD_DONATION_SYSTEM_DONOR_H
 #define BLOOD_DONATION_SYSTEM_DONOR_H
 
-typedef struct
+typedef struct DONOR
 {
     int id;
     char name[33];

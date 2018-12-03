@@ -5,4 +5,10 @@
 5	Para_Zita	AB+	para@zita.hu	3	2018.02.10.
 6	David Zambo	b3	ez@nem.az	4	2011.01.01.
 7	Peter Parker	B	ez@egy.hu	12	1990.01.01.
-1
+8	Valami	A+	valami@e.hu	21	2000.02.27.
+9	Kiss Rozsa	A+	kiss@rozsa.hu	4	2016.04.21.
+10	Vlami	A+	keksz@o.hu	4	2005.01.01.
+11	Teszt	B+	az@lesz.az	54	1999.09.09.
+12	Belat	B+	bela@email.hu	33	2000.01.01.
+13	UjTeszt	B+	multi@donor.com	44	1999.09.09.
+14	UjUjteszt	0+	check@it.hu	78	2008.09.09.

@@ -18,26 +18,29 @@ void list_donors(DONOR *donor_list) {
         if (donor_list[i].id == 0) {
             break;
         }
+        char nameView[33] = {}, emailView[33] = {};
 
         // FORMAT THE NAME VIEW
-        name_length = strlength(donor_list[i].name);
+        strcopy(nameView, donor_list[i].name);
+        name_length = strlength(nameView);
         while (name_length < 28) {
-            strconcat(donor_list[i].name, "\t");
+            strconcat(nameView, "\t");
             name_length += 4;
         }
 
         // FORMAT THE EMAIL VIEW
-        email_length = strlength(donor_list[i].email);
+        strcopy(emailView, donor_list[i].email);
+        email_length = strlength(emailView);
         while (email_length < 28) {
-            strconcat(donor_list[i].email, "\t");
+            strconcat(emailView, "\t");
             email_length += 4;
         }
 
         printf("#%d\t%s\t%s\t\t%s\t%d\t\t\t%s\n",
                donor_list[i].id,
-               donor_list[i].name,
+               nameView,
                donor_list[i].blood_type,
-               donor_list[i].email,
+               emailView,
                donor_list[i].blood_donations,
                donor_list[i].last_donate_at);
 

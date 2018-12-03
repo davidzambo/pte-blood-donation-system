@@ -6,6 +6,7 @@
 
 /**
  * Returns the length of string
+ *
  * @param str
  * @return
  */
@@ -40,6 +41,7 @@ int strcopy(char *to, char *from) {
 
 /**
  * Convert a string array to int
+ *
  * @param str
  * @return
  */
@@ -48,6 +50,13 @@ int strtoint(char *str) {
     int result = 0;
 
     for (i = 0; i < strlength(str); i++) {
+        /*
+         * Checks, if letter is a number
+         */
+        if ((str[i] < '0' || str[i] > '9')) {
+            printf("\nInvalid string to integer conversion!");
+            return -1;
+        }
         result *= 10;
         result += ((int) str[i]) - 48;
     }
@@ -55,6 +64,13 @@ int strtoint(char *str) {
     return result;
 }
 
+/**
+ * Concat two strings
+ *
+ * @param to
+ * @param str
+ * @return
+ */
 int strconcat(char *to, char *str) {
     int i = strlength(to), j = 0;
 

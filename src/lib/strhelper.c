@@ -35,7 +35,8 @@ int strcopy(char *to, char *from) {
         i++;
     }
 
-    *(from + i) = '\0';
+    *(to + i) = '\0';
+
     return 0;
 }
 

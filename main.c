@@ -28,7 +28,7 @@ int main(int argc, char *args[])
     // 	printf("Enter the current date (i.e. 2018.09.29.), then please press <ENTER>:  ");
     // 	scanf("%s", &currentDate);
 
-    // 	isValidDate = is_valid_date(currentDate);
+    // 	isValidDate = is_valid_date(currentDate, 0);
 
     // 	if (is_valid_date == false)
     // 	{

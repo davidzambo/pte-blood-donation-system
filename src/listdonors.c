@@ -4,6 +4,7 @@
 
 #include "structs/donor.h"
 #include "lib/strhelper.h"
+#include "lib/validator.h"
 #include <stdio.h>
 
 void list_donors(DONOR *donor_list) {
@@ -13,7 +14,7 @@ void list_donors(DONOR *donor_list) {
     printf("\t\t\t\t\t\t\t\t\tTYPE\n");
 
     while (1) {
-        if (donor_list[i].id == 0) {
+        if (!donor_list[i].name[0]) {
             break;
         }
         char nameView[33] = {}, emailView[33] = {};
@@ -42,6 +43,15 @@ void list_donors(DONOR *donor_list) {
                donor_list[i].blood_donations,
                donor_list[i].last_donate_at);
 
+        if (!is_valid_email(donor_list[i].email, 1))
+        {
+            printf("\t\t\t\t\t\t\t\t\t\t\tINVALID EMAIL ADDRESS!!!\n");
+        }
+
+        if (!is_valid_date(donor_list[i].last_donate_at, 1))
+        {
+            printf("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID LAST DONATION DATE!!!\n");
+        }
         i++;
     }
 

@@ -15,7 +15,7 @@
 DONOR *initializer(int argc, char args[]) {
     char *FILENAME;
     char line[255];
-    int length = 0;
+    unsigned int length = 0;
     FILE *file;
     FILENAME = args;
 
@@ -46,19 +46,28 @@ DONOR *initializer(int argc, char args[]) {
         printf("\n- Database file (%s) opened!", FILENAME);
     }
 
-    DONOR *donors = malloc(sizeof(DONOR));
+    DONOR *donors = (DONOR*) malloc(sizeof(DONOR));
 
     while (fgets(line, 255, file)) {
-        donors = realloc(donors, (length + 1) * sizeof(DONOR));
-        prepare_record(line, (donors + length));
         length++;
+        /*
+         * Add a new empty record to be able to detect
+         * the end of a while loop
+         */
+        donors = realloc(donors, (length + 2 ) * sizeof(DONOR));
+        if (!donors) {
+            printf("\nUnable to allocate memory!\n");
+            return 0;
+        }
+        prepare_record(line, (donors + length - 1));
+
     }
 
-    /*
-     * Add a new empty record to be able to detect
-     * the end of a while loop
-     */
-    donors = realloc(donors, (length + 1) * sizeof(DONOR));
+//    printf("\n3 Donor size: %d", sizeof(DONOR));
+
+//    donors = realloc(donors, (length + 2) * sizeof(DONOR));
+//    printf("\nDonor list size: %d", (int) malloc_usable_size((donors + 0)));
+    strcopy(donors[length].name, "");
 
     fclose(file);
 

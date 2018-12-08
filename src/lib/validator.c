@@ -12,7 +12,7 @@
  * @param date
  * @return
  */
-int is_valid_date(char *date)
+int is_valid_date(char *date, int isSilent)
 {
     int i = 0, c = 0, year = 0, month = 0, day = 0;
     int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -32,7 +32,10 @@ int is_valid_date(char *date)
             (date[10] != '.')
         )
     {
-        printf("\nInproper date format! Please enter the date as 'YYYY.MM.DD.' !");
+        if (!isSilent)
+        {
+            printf("Inproper date format! Please enter the date as 'YYYY.MM.DD.' !\n");
+        }
         return 0;
     }
 
@@ -66,13 +69,19 @@ int is_valid_date(char *date)
     daysInMonth[1] += is_leap_year(year);
 
     if (month < 1 || month > 12) {
-        printf("\nInvalid date! A year has only 12 months! %d", month);
+        if (!isSilent)
+        {
+            printf("Invalid date! A year has only 12 months! %d\n", month);
+        }
         return 0;
     }
 
     if (daysInMonth[month-1] < day)
     {
-        printf("\nInvalid date! %d. month has only %d days!", month, daysInMonth[month-1]);
+        if (!isSilent)
+        {
+            printf("Invalid date! %d. month has only %d days!\n", month, daysInMonth[month-1]);
+        }
         return 0;
     }
 
@@ -89,7 +98,7 @@ int is_valid_date(char *date)
 int is_valid_name(char *name)
 {
     if (strlength(name) > 32) {
-        printf("\nLength of the given name cannot be longer than 32 charachters!\n");
+        printf("Length of the given name cannot be longer than 32 charachters!\n");
         return 0;
     }
 
@@ -104,7 +113,7 @@ int is_valid_name(char *name)
          * Take care of the capital letters!
          */
         if ((i == 0 || *(name + i - 1) == ' ') && (actualLetter < 'A' || actualLetter > 'Z')) {
-            printf("\nName should start with capital letters.\n");
+            printf("Name should start with capital letters.\n");
             return 0;
         }
 
@@ -117,7 +126,7 @@ int is_valid_name(char *name)
                 (actualLetter > 'z')
             )
         {
-            printf("\nName should contain only '-', ' ' and '.' characters and letters!\n\n");
+            printf("Name should contain only '-', ' ' and '.' characters and letters!\n");
             return 0;
         }
 
@@ -175,7 +184,7 @@ int is_valid_blood_type(char *bloodType)
     }
 
     if (hasError == 1) {
-        printf("\nInvalid blood type! Only 0+, 0-, A+, A-, B+, B-, AB+, AB- are accepted!\n");
+        printf("Invalid blood type! Only 0+, 0-, A+, A-, B+, B-, AB+, AB- are accepted!\n");
         return 0;
     }
 
@@ -192,7 +201,7 @@ int is_valid_blood_type(char *bloodType)
  * @param email
  * @return
  */
-int is_valid_email(char *email)
+int is_valid_email(char *email, int isSilent)
 {
     int i, hasAt = 0, hasDot = 0, needLetterBeforeDot = 0;
     int length = strlength(email);
@@ -203,8 +212,11 @@ int is_valid_email(char *email)
      * max length: we store email addresses as 33 byte long chars
      */
     if (length < 7 || length > 33) {
-        printf("\nInvalid email address! Email address should be longer then 5 characters,\n"
-                "and should not be longer then 32 characters!\n");
+        if (!isSilent)
+        {
+            printf("Invalid email address! Email address should be longer then 5 characters,\n"
+                   "and should not be longer then 32 characters!\n");
+        }
         return 0;
     }
 
@@ -213,7 +225,10 @@ int is_valid_email(char *email)
      */
     if ((*email < 'A') ||  (*email > 'Z' && *email < 'a') || (*email > 'z') )
     {
-        printf("\nInvalid email address! Email address should start with letter!\n");
+        if (!isSilent)
+        {
+            printf("Invalid email address! Email address should start with letter!\n");
+        }
         return 0;
     }
 
@@ -224,29 +239,42 @@ int is_valid_email(char *email)
          */
         if ((*(email + i) < '0') && !( *(email + i) == '.' || *(email + i) == '-' ))
         {
-            printf("\nInvalid charachter in email address: %c!\n"
-                   "Email address should contain only '-', '_', '@', '.' characters, letters and numbers!\n", email[i]);
+            if (!isSilent)
+            {
+                printf("Invalid charachter in email address: %c!\n"
+                       "Email address should contain only '-', '_', '@', '.' characters, letters and numbers!\n", email[i]);
+            }
             return 0;
         }
 
         if ((*(email + i) > '9' && *(email + i) < '@'))
         {
-            printf("\nInvalid charachter in email address: %c!\n"
-                   "Email address should contain only '-', '_', '@', '.' characters, letters and numbers!\n", email[i]);
+            if (!isSilent)
+            {
+                printf("Invalid charachter in email address: %c!\n"
+                       "Email address should contain only '-', '_', '@', '.' characters, letters and numbers!\n", email[i]);
+            }
             return 0;
         }
 
         if ((*(email + i) > 'Z' && *(email + i) < 'a') && *(email + i) != '_' )
         {
-            printf("\nInvalid charachter in email address: %c!\n"
-                   "Email address should contain only '-', '_', '@', '.' characters, letters and numbers!\n", email[i]);
+            if (!isSilent)
+            {
+                printf("Invalid charachter in email address: %c!\n"
+                       "Email address should contain only '-', '_', '@', '.' characters, letters and numbers!\n", email[i]);
+            }
             return 0;
         }
 
         if ((*(email + i) < '0') && !( *(email + i) == '.' || *(email + i) == '-' ))
         {
-            printf("\nInvalid charachter in email address: %c!\n"
-                   "Email address should contain only '-', '_', '@', '.' characters, letters and numbers!\n", email[i]);
+            if (!isSilent)
+            {
+                printf("Invalid charachter in email address: %c!\n"
+                       "Email address should contain only '-', '_', '@', '.' characters, letters and numbers!\n", email[i]);
+
+            }
             return 0;
         }
 
@@ -279,18 +307,27 @@ int is_valid_email(char *email)
      * Error reporting
      */
     if (hasAt == 0) {
-        printf("\nInvalid email address! Email address should contains '@'!\n");
+        if (!isSilent)
+        {
+            printf("Invalid email address! Email address should contains '@'!\n");
+        }
         return 0;
     }
 
     if (hasDot == 0) {
-        printf("\nInvalid email address! Email address should contains at least one '.'\n"
-               "after '@'!\n");
+        if (!isSilent)
+        {
+            printf("Invalid email address! Email address should contains at least one '.'\n"
+                   "after '@'!\n");
+        }
         return 0;
     }
 
     if (needLetterBeforeDot == 1) {
-        printf("\nInvalid email address! Email address should contains at least one letter before '.' and after '@'!\n");
+        if (!isSilent)
+        {
+            printf("Invalid email address! Email address should contains at least one letter before '.' and after '@'!\n");
+        }
         return 0;
     }
 
@@ -299,7 +336,10 @@ int is_valid_email(char *email)
      */
     if ((*(email + i - 1) < 'A') ||  (*(email + i - 1) > 'Z' && *(email + i - 1) < 'a') || (*(email + i - 1) > 'z') )
     {
-        printf("\nInvalid email address! Email address should end with letter!\n");
+        if (!isSilent)
+        {
+            printf("Invalid email address! Email address should end with letter!\n");
+        }
         return 0;
     }
 
@@ -321,13 +361,13 @@ int is_valid_blood_donation(char *donations)
      */
     if (number == -1)
     {
-        printf("\nInvalid blood donation! Please enter a number!\n");
+        printf("Invalid blood donation! Please enter a number!\n");
         return 0;
     }
 
     if (number > 100)
     {
-        printf("\nMore than 100 blood donations seem unrealistic! Please enter a number!\n");
+        printf("More than 100 blood donations seem unrealistic! Please enter a number!\n");
         return 0;
     }
 

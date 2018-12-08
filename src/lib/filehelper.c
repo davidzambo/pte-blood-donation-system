@@ -62,7 +62,7 @@ int prepare_record(char *line, DONOR *donor)
 
             switch (items) {
                 case 0:
-                    donor->id = strtoint(lineBuffer);
+                    donor->id = (unsigned) strtoint(lineBuffer);
                     break;
                 case 1:
                     strcopy(donor->name, lineBuffer);
@@ -74,10 +74,12 @@ int prepare_record(char *line, DONOR *donor)
                     strcopy(donor->email, lineBuffer);
                     break;
                 case 4:
-                    donor->blood_donations = strtoint(lineBuffer);
+                    donor->blood_donations = (unsigned) strtoint(lineBuffer);
                     break;
                 case 5:
                     strcopy(donor->last_donate_at, lineBuffer);
+                    break;
+                default:
                     break;
             }
             c = -1;
@@ -90,6 +92,5 @@ int prepare_record(char *line, DONOR *donor)
         }
     }
 
-//    printf("\nDETAILS: #%d | name: %s | blood type: %s | email: %s | donations: %d | last: %s", donor->id, donor->name, donor->blood_type, donor->email, donor->blood_donations, donor->last_donate_at);
     return 0;
 }

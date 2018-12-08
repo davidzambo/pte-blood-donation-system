@@ -1,14 +1,5 @@
-1	Kandisz_Nora	B+	kd@dm.com	2	2017.11.12.
-2	Remek_Elek	B	red@ele.com	2	2015.02.18.
-3	Pop_Simon	B+	ps@vi.com	1	2010.09.09.
-4	Patia_Nora	A+	patt@n.com	4	2017.11.10.
-5	Para_Zita	AB+	para@zita.hu	3	2018.02.10.
-6	David Zambo	b3	ez@nem.az	4	2011.01.01.
-7	Peter Parker	B	ez@egy.hu	12	1990.01.01.
-8	Valami	A+	valami@e.hu	21	2000.02.27.
-9	Kiss Rozsa	A+	kiss@rozsa.hu	4	2016.04.21.
-10	Vlami	A+	keksz@o.hu	4	2005.01.01.
-11	Teszt	B+	az@lesz.az	54	1999.09.09.
-12	Belat	B+	bela@email.hu	33	2000.01.01.
-13	UjTeszt	B+	multi@donor.com	44	1999.09.09.
-14	UjUjteszt	0+	check@it.hu	78	2008.09.09.
+1	Nagy Ilona	B+	nagy@ilona.hu	21	2001.01.01.
+2	Kiss Krisztina	A+	kiss@kriszti.na	43	2001.01.01.
+3	Nagy Tihamer	A+	nagy.thima@me.r	33	2001.01.01.
+4	Teszt	A+	te@szt.hu	3	2001.01.01.
+5	ReWreite	AB+	re@wri.hu	4	2003.03.03.

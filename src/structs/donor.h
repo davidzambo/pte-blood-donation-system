@@ -7,11 +7,11 @@
 
 typedef struct DONOR
 {
-    int id;
+    unsigned int id;
     char name[33];
     char blood_type[5];
     char email[33];
-    int blood_donations;
+    unsigned int blood_donations;
     char last_donate_at[12];
 } DONOR;
 

@@ -20,76 +20,76 @@
  */
 int create_donor(char *FILENAME, DONOR *donor_list) {
 
-    char saveOrCancel, addNew = 'n';
-    int length = 0;
+    char saveOrCancel = 'x', addNew = 'n';
+    unsigned int length = 0;
     int isValid = 0;
     char str_buffer[32];
 
-    while ((donor_list + length)->id != 0) {
+    while (donor_list[length].name[0] != '\0') {
         length++;
     }
-    printf("LENGTH: %d", length);
 
     do {
-        DONOR new_donor;
+        DONOR newDonor;
 
         printf("\n================= REGISTER A NEW DONOR =================\n");
         while (isValid == 0)
         {
             printf("Name: ");
-            scanf(" %[^\n]s", new_donor.name);
-            getchar();
-            isValid = is_valid_name(new_donor.name);
+            scanf(" %[^\n]s", newDonor.name);
+//            getchar();
+//            printf("\nSCANNED: %s", newDonor.name);
+            isValid = is_valid_name(newDonor.name);
         }
         isValid = 0;
 
         while (isValid == 0)
         {
             printf("Blood group: ");
-            scanf("%[^\n]s", new_donor.blood_type);
-            getchar();
-            isValid = is_valid_blood_type(new_donor.blood_type);
+            scanf(" %[^\n]s", newDonor.blood_type);
+//            getchar();
+            isValid = is_valid_blood_type(newDonor.blood_type);
         }
         isValid = 0;
 
         while (isValid == 0)
         {
             printf("Email: ");
-            scanf("%[^\n]s", new_donor.email);
-            getchar();
-            isValid = is_valid_email(new_donor.email);
+            scanf(" %[^\n]s", newDonor.email);
+//            getchar();
+            isValid = is_valid_email(newDonor.email, 0);
         }
         isValid = 0;
 
         while (isValid == 0)
         {
             printf("Number of blood donations before: ");
-            scanf("%[^\n]s", str_buffer); // &new_donor.blood_donations
-            getchar();
+            scanf(" %[^\n]s", str_buffer);
+//            getchar();
             isValid = is_valid_blood_donation(str_buffer);
         }
-        new_donor.blood_donations = strtoint(str_buffer);
+        newDonor.blood_donations = (unsigned) strtoint(str_buffer);
         isValid = 0;
 
         while (isValid == 0)
         {
             printf("Date of last donation: ");
-            scanf("%11[^\n]s", new_donor.last_donate_at);
-            getchar();
-            isValid = is_valid_date(new_donor.last_donate_at);
+            scanf(" %11[^\n]s", newDonor.last_donate_at);
+//            getchar();
+            isValid = is_valid_date(newDonor.last_donate_at, 0);
         }
 
         printf("\n\nPlease check the entered values!\n");
-        printf("\nName: %s", new_donor.name);
-        printf("\nBlood group: %s", new_donor.blood_type);
-        printf("\nEmail: %s", new_donor.email);
-        printf("\nBlood donations before: %d", new_donor.blood_donations);
-        printf("\nDate of last donation: %s", new_donor.last_donate_at);
+        printf("\nName: %s", newDonor.name);
+        printf("\nBlood group: %s", newDonor.blood_type);
+        printf("\nEmail: %s", newDonor.email);
+        printf("\nBlood donations before: %d", newDonor.blood_donations);
+        printf("\nDate of last donation: %s", newDonor.last_donate_at);
 
-        while ((saveOrCancel != 'c') && (saveOrCancel != 's'))
+        do
         {
             printf("\n\nSave record (s) or cancel (c)? ");
-            scanf("%1s", &saveOrCancel);
+            scanf(" %c", &saveOrCancel);
             getchar();
 
             if (saveOrCancel == 'c')
@@ -100,45 +100,7 @@ int create_donor(char *FILENAME, DONOR *donor_list) {
             if (saveOrCancel == 's')
             {
 
-                /*
-                 * Copy the new donor data the the donor list
-                 *
-                 * Take care of length!
-                 * We know, what is the length of the array,
-                 * but array starts at 0;
-                 *
-                 */
-                donor_list[length].id = length + 1;
-                strcopy(donor_list[length].name, new_donor.name);
-                strcopy(donor_list[length].blood_type, new_donor.blood_type);
-                strcopy(donor_list[length].email, new_donor.email);
-                donor_list[length].blood_donations = new_donor.blood_donations;
-                strcopy(donor_list[length].last_donate_at, new_donor.last_donate_at);
-
-                /*
-                 * For debugging
-                printf("\nid %d %d", donor_list[length].id, length);
-                printf("\nname %s %s", donor_list[length].name, new_donor.name);
-                printf("\nblood_type %s %s", donor_list[length].blood_type, new_donor.blood_type);
-                printf("\nemail %s %s", donor_list[length].email, new_donor.email);
-                printf("\nblood_donations %d %d", donor_list[length].blood_donations, new_donor.blood_donations);
-                printf("\nlast_donate_at %s %s", donor_list[length].last_donate_at, new_donor.last_donate_at);
-                */
-
-                /*
-                 * Write data to file
-                 */
-                FILE *db;
-                db = fopen(FILENAME, "a");
-
-                fprintf(db, "%d\t%s\t%s\t%s\t%d\t%s\n",
-                        donor_list[length].id,
-                        donor_list[length].name,
-                        donor_list[length].blood_type,
-                        donor_list[length].email,
-                        donor_list[length].blood_donations,
-                        donor_list[length].last_donate_at);
-
+                length++;
                 /**
                  * Reallocate memory size for donor list
                  *
@@ -152,9 +114,78 @@ int create_donor(char *FILENAME, DONOR *donor_list) {
                  *
                  * That's the reason of the length + 2
                  */
+
                 donor_list = realloc(donor_list, (length + 2) * sizeof(DONOR));
-                
+
+                if (!donor_list) {
+                    printf("\nUnable to allocate memory!\n");
+                    return 0;
+                }
+
+                strcopy(donor_list[length].name, "\0");
+
+                /*
+                 * Copy the new donor data the the donor list
+                 *
+                 * Take care of length!
+                 * We know, what is the length of the array,
+                 * but array starts at 0;
+                 *
+                 */
+                printf("\nRUN\n");
+                donor_list[length - 1].id = length;
+                strcopy(donor_list[length - 1].name, newDonor.name);
+                strcopy(donor_list[length - 1].blood_type, newDonor.blood_type);
+                strcopy(donor_list[length - 1].email, newDonor.email);
+                donor_list[length - 1].blood_donations = newDonor.blood_donations;
+                strcopy(donor_list[length - 1].last_donate_at, newDonor.last_donate_at);
+
+
+                /*
+                 * For debugging
+                printf("\nid %d %d", donor_list[length].id, length);
+                printf("\nname %s %s", donor_list[length].name, newDonor.name);
+                printf("\nblood_type %s %s", donor_list[length].blood_type, newDonor.blood_type);
+                printf("\nemail %s %s", donor_list[length].email, newDonor.email);
+                printf("\nblood_donations %d %d", donor_list[length].blood_donations, newDonor.blood_donations);
+                printf("\nlast_donate_at %s %s", donor_list[length].last_donate_at, newDonor.last_donate_at);
+                */
+
+                /*
+                 * Write data to file
+                 */
+                FILE *db;
+                db = fopen(FILENAME, "a");
+
+                fprintf(db, "%d\t%s\t%s\t%s\t%d\t%s\n",
+                        donor_list[length - 1].id,
+                        donor_list[length - 1].name,
+                        donor_list[length - 1].blood_type,
+                        donor_list[length - 1].email,
+                        donor_list[length - 1].blood_donations,
+                        donor_list[length - 1].last_donate_at);
+
                 fclose(db);
+
+
+                int i = 0;
+                for (i = 0; i < 20; i++)
+                {
+                    if (i == length - 1)
+                    {
+                        printf("\nTHATS THE LAST ONE!!!\n");
+                    }
+                    printf("DONOR: %p | %d\t%s\t%s\t%s\t%d\t%s\n",
+                           &donor_list[i],
+                            donor_list[i].id,
+                            donor_list[i].name,
+                            donor_list[i].blood_type,
+                            donor_list[i].email,
+                            donor_list[i].blood_donations,
+                            donor_list[i].last_donate_at);
+                }
+
+                printf("\nNew record successfully saved to file!");
 
                 /*
                  * Let user save another donor
@@ -162,21 +193,20 @@ int create_donor(char *FILENAME, DONOR *donor_list) {
                 do
                 {
                     printf("\n\nWould you like to add another donor? ([y]es / [n]o) ");
-                    scanf("%1s", &addNew);
-                    getchar();
-                } while (!( addNew == 'y' || addNew == 'Y' || addNew == 'n'));
+                    scanf(" %c", &addNew);
+                } while (!( addNew == 'y' || addNew == 'Y' || addNew == 'n' || addNew == 'N'));
 
+                if (addNew == 'n' || addNew == 'N')
+                {
+                    return 0;
+                }
                 /*
                  * Investigate Y and y
                  */
                 if (addNew == 'Y' || addNew == 'y')
                 {
                     addNew = 'y';
-                    /*
-                     * Should increment the length, as the investigation at the
-                     * beginning of the function will not run again
-                     */
-                    length++;
+
                     /*
                      * Should set to 0 to enable all validators
                      */
@@ -184,15 +214,15 @@ int create_donor(char *FILENAME, DONOR *donor_list) {
                     /*
                      * Must 'disable' to let it read it from the user
                      */
-                    saveOrCancel = '\0';
-                    printf("\n\n");
+//                    saveOrCancel = 's';
                     /**
                      * break out the 'saveOrCancel' loop
                      */
-                    break;
+//                    break;
                 }
             }
-        }
+        } while ((saveOrCancel != 'c') && (saveOrCancel != 's'));
+
     } while (addNew == 'y');
 
     return 1;

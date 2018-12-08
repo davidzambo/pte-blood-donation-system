@@ -132,7 +132,6 @@ int create_donor(char *FILENAME, DONOR *donor_list) {
                  * but array starts at 0;
                  *
                  */
-                printf("\nRUN\n");
                 donor_list[length - 1].id = length;
                 strcopy(donor_list[length - 1].name, newDonor.name);
                 strcopy(donor_list[length - 1].blood_type, newDonor.blood_type);
@@ -168,22 +167,22 @@ int create_donor(char *FILENAME, DONOR *donor_list) {
                 fclose(db);
 
 
-                int i = 0;
-                for (i = 0; i < 20; i++)
-                {
-                    if (i == length - 1)
-                    {
-                        printf("\nTHATS THE LAST ONE!!!\n");
-                    }
-                    printf("DONOR: %p | %d\t%s\t%s\t%s\t%d\t%s\n",
-                           &donor_list[i],
-                            donor_list[i].id,
-                            donor_list[i].name,
-                            donor_list[i].blood_type,
-                            donor_list[i].email,
-                            donor_list[i].blood_donations,
-                            donor_list[i].last_donate_at);
-                }
+//                int i = 0;
+//                for (i = 0; i < 20; i++)
+//                {
+//                    if (i == length - 1)
+//                    {
+//                        printf("\nTHATS THE LAST ONE!!!\n");
+//                    }
+//                    printf("DONOR: %p | %d\t%s\t%s\t%s\t%d\t%s\n",
+//                           &donor_list[i],
+//                            donor_list[i].id,
+//                            donor_list[i].name,
+//                            donor_list[i].blood_type,
+//                            donor_list[i].email,
+//                            donor_list[i].blood_donations,
+//                            donor_list[i].last_donate_at);
+//                }
 
                 printf("\nNew record successfully saved to file!");
 

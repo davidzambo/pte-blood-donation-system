@@ -12,29 +12,21 @@
 int main(int argc, char *args[])
 {
     char menu_action;
-    char currentDate[12] = "2018.12.03.";
-    bool isValidDate;
+    char currentDate[12];
     char *FILENAME = args[1];
     char *menuitem;
-    int submenu;
+    int isValid = 0;
     DONOR *donor_list;
 
     printf("================================ WELCOME TO OUR BLOOD DONATION SYSTEM ===============================\n");
 
-    // printf("\e[1;1H\e[2J");
-
-    // do
-    // {
-    // 	printf("Enter the current date (i.e. 2018.09.29.), then please press <ENTER>:  ");
-    // 	scanf("%s", &currentDate);
-
-    // 	isValidDate = is_valid_date(currentDate, 0);
-
-    // 	if (is_valid_date == false)
-    // 	{
-    // 		printf("The given date is not in the proper format!\n\n");
-    // 	}
-    // } while (is_valid_date == false);
+     do
+     {
+     	printf("Enter the current date (i.e. 2018.09.29.), then please press <ENTER>:  ");
+     	scanf("%s", currentDate);
+     	getchar();
+        isValid = is_valid_date(currentDate, 0);
+     } while (isValid != 1);
 
     donor_list = initializer(argc, FILENAME);
 
